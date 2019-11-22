@@ -9,27 +9,30 @@ script:
 
 jobs:
   include:
-    - stage: Publish
+    - stage: Publish NPM
       node_js: "12"
       script: skip
-      before_deploy_github:
-        - npm run build
-      deploy_github:
-        provider: npm
-        registry: https://npm.pkg.github.com
-        email: "$GITHUB_EMAIL"
-        api_key: "$GITHUB_API_TOKEN"
-        edge:
-          branch: master
-        skip_cleanup: true
-        on:
-          branch: release
       before_deploy:
         - npm run build
       deploy:
         provider: npm
         email: "$NPM_EMAIL"
         api_key: "$NPM_API_TOKEN"
+        edge:
+          branch: master
+        skip_cleanup: true
+        on:
+          branch: release
+    - stage: Publish GitHub
+      node_js: "12"
+      script: skip
+      before_deploy:
+        - npm run build
+      deploy:
+        provider: npm
+        registry: https://npm.pkg.github.com
+        email: "$GITHUB_EMAIL"
+        api_key: "$GITHUB_API_TOKEN"
         edge:
           branch: master
         skip_cleanup: true
