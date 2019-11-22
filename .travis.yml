@@ -1,7 +1,7 @@
 language: node_js
 node_js:
-  - '12'
-  - '10'
+  - "12"
+  - "10"
 
 script:
   - npm run eslint
@@ -10,15 +10,26 @@ script:
 jobs:
   include:
     - stage: Publish
-      node_js: '12'
+      node_js: "12"
       script: skip
+      before_deploy_github:
+        - npm run build
+      deploy_github:
+        provider: npm
+        registry: https://npm.pkg.github.com
+        email: "$GITHUB_EMAIL"
+        api_key: "$GITHUB_API_TOKEN"
+        edge:
+          branch: master
+        skip_cleanup: true
+        on:
+          branch: release
       before_deploy:
         - npm run build
       deploy:
         provider: npm
-        registry: https://npm.pkg.github.com
-        email: '$NPM_EMAIL'
-        api_key: '$NPM_API_TOKEN'
+        email: "$NPM_EMAIL"
+        api_key: "$NPM_API_TOKEN"
         edge:
           branch: master
         skip_cleanup: true
