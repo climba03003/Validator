@@ -33,7 +33,7 @@
     "pretest": "npm run build",
     "test": "npx istanbul cover _mocha -- --recursive",
     "precoveralls": "npm run build",
-    "coveralls": "npx istanbul cover _mocha -- --recursive && cat ./coverage/lcov.info | npx coveralls && rm -rf ./coverage"
+    "coveralls": "npx istanbul cover _mocha --report lcovonly -- --recursive -R spec && cat ./coverage/lcov.info | npx coveralls && rm -rf ./coverage"
   },
   "publishConfig": {
     "access": "public"
