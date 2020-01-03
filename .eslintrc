@@ -78,7 +78,8 @@
     {
       "files": ["test/**/*.ts"],
       "rules": {
-        "no-prototype-builtins": "off"
+        "no-prototype-builtins": "off",
+        "@typescript-eslint/no-empty-function": "warn"
       }
     }
   ]
