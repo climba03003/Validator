@@ -59,5 +59,9 @@ describe('lib', function() {
     it('Empty', function() {
       should(Validator).has.hasOwnProperty('Empty');
     });
+
+    it('CipherTypes', function() {
+      should(Validator).has.hasOwnProperty('CipherTypes');
+    });
   });
 });
