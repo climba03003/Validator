@@ -1,7 +1,9 @@
+import { ObjectId } from 'mongodb';
+
 const regex = /^[a-f\d]{24}$/i;
 
 // should convert to string before process
-export function isObjectId(value: any): boolean {
+export function isObjectId(value: any): value is ObjectId {
   return regex.test(String(value));
 }
 
