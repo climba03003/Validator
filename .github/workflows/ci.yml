@@ -32,7 +32,7 @@ jobs:
           npm install --ignore-scripts
       - name: Check licenses
         run: |
-          npm run license-checker
+          npm run license-checker --if-present
       - name: Run tests
         run: |
           npm run test
